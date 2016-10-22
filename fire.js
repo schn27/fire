@@ -12,10 +12,10 @@ var imageData = null;
 function initColors() {
 	if (colors == null) {
 		var cr0 = 0;
-		var cg0 = 0.5;
+		var cg0 = 0.4;
 		var cb0 = 0.7;
 
-		var kr = 1 / (1 - cr0);
+		var kr = 1 / (1 - cr0) * 2;
 		var br = -kr * cr0;
 		var kg = 1 / (1 - cg0);
 		var bg = -kg * cg0;
@@ -24,11 +24,11 @@ function initColors() {
 
 		colors = [];
 		for (var c = 0; c < 256; ++c) {
-			var v = (1 - c / 255);
+			var v = c / 255;
 			var color = [];
-			color[0] = Math.floor(Math.min(Math.max(kr * (1 - v * v * v) + br, 0), 1) * 255);
-			color[1] = Math.floor(Math.min(Math.max(kg * (1 - v * v) + bg, 0), 1) * 255);
-			color[2] = Math.floor(Math.min(Math.max(kb * (1 - v) + bb, 0), 1) * 255);
+			color[0] = Math.floor(Math.min(Math.max(kr * v + br, 0), 1) * 255);
+			color[1] = Math.floor(Math.min(Math.max(kg * v + bg, 0), 1) * 255);
+			color[2] = Math.floor(Math.min(Math.max(kb * v + bb, 0), 1) * 255);
 			colors[c] = color;
 		}
 	}
