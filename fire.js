@@ -64,13 +64,13 @@ function Fire() {
 	}
 
 	function resize() {
-		canvas.width = window.innerWidth;
-		canvas.height = window.innerHeight;
+		width = Math.floor(window.innerWidth / scale);
+		height = Math.floor(window.innerHeight / scale);
 
-		width = Math.floor(canvas.width / scale);
-		height = Math.floor(canvas.height / scale);
+		canvas.width = width;
+		canvas.height = height;
 
-		imageData = canvas.getContext('2d').createImageData(width * scale, height * scale);
+		imageData = canvas.getContext('2d').createImageData(width, height);
 
 		for (var i = 0; i < width * height; ++i) {
 			newPixels[i] = pixels[i] = 0;
@@ -104,16 +104,11 @@ function Fire() {
 
 				var color = palette[avg];
 
-				for (var ys = 0; ys < scale; ++ys) {
-					var ofs = (y * scale + ys) * width * scale + x * scale;
-					for (var xs = 0; xs < scale; ++xs) {
-						var i = (ofs + xs) * 4;
-						imageData.data[i + 0] = color[0];
-						imageData.data[i + 1] = color[1];
-						imageData.data[i + 2] = color[2];
-						imageData.data[i + 3] = 255;		
-					}
-				}
+				var i = (y0 + x) * 4;
+				imageData.data[i + 0] = color[0];
+				imageData.data[i + 1] = color[1];
+				imageData.data[i + 2] = color[2];
+				imageData.data[i + 3] = 255;
 			}
 		}
 
