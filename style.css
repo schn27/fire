@@ -1,7 +1,14 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
 body, html {
-	font-family: Verdana;
-	margin:0px;
-	padding:0px;
 	height: 100%;
+}
+
+#canvas {
+	position: absolute;
 	width: 100%;
+	height: 100%;
 }
