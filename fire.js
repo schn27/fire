@@ -121,9 +121,7 @@ function Fire() {
 		pixels = newPixels;
 		newPixels = tmp;
 
-		var context = canvas.getContext('2d');
-
-		context.putImageData(imageData, 0, 0);
+		canvas.getContext('2d').putImageData(imageData, 0, 0);
 	}
 }
 
